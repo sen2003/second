@@ -1,0 +1,5 @@
+train: path
+val: path
+
+nc: 1
+classes: ["face"]

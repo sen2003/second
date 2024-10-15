@@ -1,0 +1,497 @@
+[
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.0673316940665245,
+            "Height": 0.14552120864391327,
+            "Left": 0.6174579858779907,
+            "Top": 0.5119432806968689
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.06607867777347565,
+            "Height": 0.14094814658164978,
+            "Left": 0.12121625989675522,
+            "Top": 0.3842565715312958
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.07012991607189178,
+            "Height": 0.13046607375144958,
+            "Left": 0.7000622153282166,
+            "Top": 0.2514491677284241
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.06283755600452423,
+            "Height": 0.13915973901748657,
+            "Left": 0.7970579862594604,
+            "Top": 0.39074447751045227
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.06095895916223526,
+            "Height": 0.1271979808807373,
+            "Left": 0.2837509214878082,
+            "Top": 0.4337645173072815
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.04915771633386612,
+            "Height": 0.12077339738607407,
+            "Left": 0.40017175674438477,
+            "Top": 0.26017406582832336
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 0,
+        "BoundingBox": {
+            "Width": 0.03989434242248535,
+            "Height": 0.14236687123775482,
+            "Left": -0.0003256466588936746,
+            "Top": 0.3319644629955292
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 467,
+        "BoundingBox": {
+            "Width": 0.06786022335290909,
+            "Height": 0.13948647677898407,
+            "Left": 0.6147236227989197,
+            "Top": 0.5177066922187805
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 467,
+        "BoundingBox": {
+            "Width": 0.06707733869552612,
+            "Height": 0.14289554953575134,
+            "Left": 0.12283428013324738,
+            "Top": 0.3825162351131439
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 467,
+        "BoundingBox": {
+            "Width": 0.06937222182750702,
+            "Height": 0.144918292760849,
+            "Left": 0.7148232460021973,
+            "Top": 0.21175305545330048
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 467,
+        "BoundingBox": {
+            "Width": 0.06147413328289986,
+            "Height": 0.13945168256759644,
+            "Left": 0.7955201864242554,
+            "Top": 0.3946681618690491
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 467,
+        "BoundingBox": {
+            "Width": 0.06031651422381401,
+            "Height": 0.12582843005657196,
+            "Left": 0.2848181128501892,
+            "Top": 0.4341546893119812
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 467,
+        "BoundingBox": {
+            "Width": 0.04050339758396149,
+            "Height": 0.1430029571056366,
+            "Left": -9.378989489050582e-05,
+            "Top": 0.33132797479629517
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.06735644489526749,
+            "Height": 0.13846944272518158,
+            "Left": 0.6201642751693726,
+            "Top": 0.5106478929519653
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.06693822145462036,
+            "Height": 0.14554278552532196,
+            "Left": 0.12958498299121857,
+            "Top": 0.37415406107902527
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.06839506328105927,
+            "Height": 0.12806867063045502,
+            "Left": 0.36362144351005554,
+            "Top": 0.25750935077667236
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.06652455031871796,
+            "Height": 0.14545434713363647,
+            "Left": 0.7584065794944763,
+            "Top": 0.215646430850029
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.06575317680835724,
+            "Height": 0.14429664611816406,
+            "Left": 0.8019909858703613,
+            "Top": 0.39542368054389954
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.06036198139190674,
+            "Height": 0.125779390335083,
+            "Left": 0.29003721475601196,
+            "Top": 0.4274909496307373
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.0423102080821991,
+            "Height": 0.14214134216308594,
+            "Left": 0.0004578246152959764,
+            "Top": 0.3274972140789032
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 967,
+        "BoundingBox": {
+            "Width": 0.07074899971485138,
+            "Height": 0.13601569831371307,
+            "Left": 0.4122451841831207,
+            "Top": 0.4011244773864746
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.06263694912195206,
+            "Height": 0.1332155466079712,
+            "Left": 0.6187582612037659,
+            "Top": 0.48371195793151855
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.06282643228769302,
+            "Height": 0.14292781054973602,
+            "Left": 0.1510101854801178,
+            "Top": 0.35379406809806824
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.06589917838573456,
+            "Height": 0.12753897905349731,
+            "Left": 0.34628328680992126,
+            "Top": 0.25681331753730774
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.06731872260570526,
+            "Height": 0.14473110437393188,
+            "Left": 0.7770004272460938,
+            "Top": 0.1958581656217575
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.06230979040265083,
+            "Height": 0.14213235676288605,
+            "Left": 0.7983839511871338,
+            "Top": 0.35116344690322876
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.05933641642332077,
+            "Height": 0.13874074816703796,
+            "Left": 0.0024516768753528595,
+            "Top": 0.30527064204216003
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1468,
+        "BoundingBox": {
+            "Width": 0.0698951706290245,
+            "Height": 0.15075428783893585,
+            "Left": 0.41025155782699585,
+            "Top": 0.3609442114830017
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1968,
+        "BoundingBox": {
+            "Width": 0.060978032648563385,
+            "Height": 0.11742947995662689,
+            "Left": 0.6126209497451782,
+            "Top": 0.45894211530685425
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1968,
+        "BoundingBox": {
+            "Width": 0.057464849203825,
+            "Height": 0.12115499377250671,
+            "Left": 0.1784924566745758,
+            "Top": 0.3370516896247864
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1968,
+        "BoundingBox": {
+            "Width": 0.05849771574139595,
+            "Height": 0.11412745714187622,
+            "Left": 0.35733598470687866,
+            "Top": 0.24072395265102386
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1968,
+        "BoundingBox": {
+            "Width": 0.062039565294981,
+            "Height": 0.13171488046646118,
+            "Left": 0.7559258341789246,
+            "Top": 0.17693917453289032
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1968,
+        "BoundingBox": {
+            "Width": 0.06106606870889664,
+            "Height": 0.1272401660680771,
+            "Left": 0.03686831519007683,
+            "Top": 0.2834317982196808
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 1968,
+        "BoundingBox": {
+            "Width": 0.056592799723148346,
+            "Height": 0.10588899999856949,
+            "Left": 0.45067650079727173,
+            "Top": 0.35223692655563354
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 2469,
+        "BoundingBox": {
+            "Width": 0.05159270763397217,
+            "Height": 0.1105038970708847,
+            "Left": 0.2070583999156952,
+            "Top": 0.3157682716846466
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 2469,
+        "BoundingBox": {
+            "Width": 0.056301213800907135,
+            "Height": 0.1197490245103836,
+            "Left": 0.7375522255897522,
+            "Top": 0.16688092052936554
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 2469,
+        "BoundingBox": {
+            "Width": 0.052630312740802765,
+            "Height": 0.11534389853477478,
+            "Left": 0.07796600461006165,
+            "Top": 0.2703433036804199
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 2969,
+        "BoundingBox": {
+            "Width": 0.04570655897259712,
+            "Height": 0.09846208244562149,
+            "Left": 0.24454382061958313,
+            "Top": 0.3092103600502014
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 2969,
+        "BoundingBox": {
+            "Width": 0.046751536428928375,
+            "Height": 0.10628770291805267,
+            "Left": 0.12544646859169006,
+            "Top": 0.2616408169269562
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 2969,
+        "BoundingBox": {
+            "Width": 0.046851254999637604,
+            "Height": 0.12086158245801926,
+            "Left": 0.8891609907150269,
+            "Top": 0.23475848138332367
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 3470,
+        "BoundingBox": {
+            "Width": 0.04126100614666939,
+            "Height": 0.10017168521881104,
+            "Left": 0.8504928350448608,
+            "Top": 0.20618143677711487
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 15482,
+        "BoundingBox": {
+            "Width": 0.05447564274072647,
+            "Height": 0.109136201441288,
+            "Left": 0.2565646469593048,
+            "Top": 0.6388881206512451
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 15482,
+        "BoundingBox": {
+            "Width": 0.049542952328920364,
+            "Height": 0.11681760102510452,
+            "Left": 0.6983322501182556,
+            "Top": 0.4000416100025177
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 15482,
+        "BoundingBox": {
+            "Width": 0.05171217769384384,
+            "Height": 0.1101069524884224,
+            "Left": 0.26344311237335205,
+            "Top": 0.3587334454059601
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    },
+    {
+        "Timestamp": 15482,
+        "BoundingBox": {
+            "Width": 0.04759259149432182,
+            "Height": 0.09397044777870178,
+            "Left": 0.5082772970199585,
+            "Top": 0.37145596742630005
+        },
+        "Name": "Unknow",
+        "Similarity": "0.00%"
+    }
+]
