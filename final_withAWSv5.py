@@ -15,6 +15,7 @@ collection_id = "myCollection1"
 
 # YOLO 模型載入
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f'using device:{device}')
 model = YOLO("../yoloV8_test/yolov8n-face.pt").to(device)
 
 # 輸入影片及輸出影片設定
@@ -30,7 +31,7 @@ unknown_faces_dir = "unknown_faces"
 os.makedirs(unknown_faces_dir, exist_ok=True)
 
 # 初始化 Haar Cascade 模型
-# face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
 # 初始化影片寫出物件
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -60,11 +61,11 @@ while cap.isOpened():
             face_img = frame[y1:y2, x1:x2]
 
             # 本地檢測人臉有效性
-            # gray_face_img = cv2.cvtColor(face_img, cv2.COLOR_BGR2GRAY)
-            # detected_faces = face_cascade.detectMultiScale(gray_face_img, scaleFactor=1.1, minNeighbors=5)
+            gray_face_img = cv2.cvtColor(face_img, cv2.COLOR_BGR2GRAY)
+            detected_faces = face_cascade.detectMultiScale(gray_face_img, scaleFactor=1.1, minNeighbors=5)
 
-            if len(face_img) == 0:
-                print("No faces detected locally. Skipping this image.")
+            if len(detected_faces) == 0:
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 continue
 
             # 使用 timestamp 作為 S3 檔名
@@ -79,22 +80,24 @@ while cap.isOpened():
             response = rekognition.search_faces_by_image(
                 CollectionId=collection_id,
                 Image={'S3Object': {'Bucket': bucket_name, 'Name': face_path}},
-                MaxFaces=1,
-                FaceMatchThreshold=70  
+                MaxFaces=10,
+                FaceMatchThreshold=30
             )
+
             if response['FaceMatches']:
                 best_match = response['FaceMatches'][0]
                 name = best_match['Face']['ExternalImageId']
                 confidence = best_match['Similarity']
                 label = f"{name} ({confidence:.2f}%)"
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             else:
                 label = "Unknown"
                 unknown_face_path = os.path.join(unknown_faces_dir, f"unknown_{frame_count}_{face_count}.jpg")
                 cv2.imwrite(unknown_face_path, face_img)
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
+                cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
-            # 在畫面上標記人臉和名稱
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             face_count += 1
 
     out.write(frame)
@@ -106,3 +109,4 @@ while cap.isOpened():
 cap.release()
 out.release()
 cv2.destroyAllWindows()
+
