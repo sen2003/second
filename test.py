@@ -1,4 +1,11 @@
-#ok1
+# import torch
+
+# print(torch.cuda.is_available())
+# print(torch.cuda.device_count())
+# print(torch.cuda.get_device_name(0))
+# print(torch.__version__)
+
+#從本地端
 import cv2
 import boto3
 import os
@@ -27,10 +34,8 @@ def cv2ChineseText(frame, text, position, textColor, textSize):
     return cv2.cvtColor(np.asanyarray(frame), cv2.COLOR_RGB2BGR)
     
 
-# AWS Rekognition 和 S3 初始化
+# AWS Rekognition 初始化
 rekognition = boto3.client('rekognition', region_name='us-east-1')  
-s3 = boto3.client('s3')
-bucket_name = "img-face-rekognition"  
 collection_id = "myCollection1"  
 
 # YOLO 模型載入
@@ -40,12 +45,13 @@ model = YOLO("../yoloV8_test/yolov8n-face.pt").to(device)
 
 # 輸入影片及輸出影片設定
 input_video_path = "C:\\cvyolo\\c1029v2.mp4"
-output_video_path = "output.mp4"
+output_video_path = "from_local.mp4"
 cap = cv2.VideoCapture(input_video_path)
 
 if not cap.isOpened():
     raise Exception("影片無法開啟")
 
+# 計時器開始
 start_time = time.time()
 
 # 建立unknoe_faces資料夾
@@ -82,30 +88,21 @@ while cap.isOpened():
 
             # 本地檢測人臉有效性
             gray_face_img = cv2.cvtColor(face_img, cv2.COLOR_BGR2GRAY)
-            detected_faces = face_cascade.detectMultiScale(gray_face_img, scaleFactor=1.1, minNeighbors=5)
+            detected_faces = face_cascade.detectMultiScale(gray_face_img, scaleFactor=1.05, minNeighbors=3)
 
-            if len(detected_faces) <1:
+            if len(detected_faces) == 0:
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
-                frame=cv2ChineseText(frame,"辨識中...",(x1, y1 - 25),(0, 0, 255),20)
-                # cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+                frame = cv2ChineseText(frame, "辨識中...", (x1, y1 - 25), (0, 0, 255), 20)
                 continue
-
-            # 使用 timestamp 作為 S3 檔名
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S%f")
-            face_path = f"{timestamp}.jpg"
-            cv2.imwrite(face_path, face_img)
-
-            # 上傳到 S3
-            s3.upload_file(face_path, bucket_name, face_path)
-
+            
             try:
-            # Rekognition Search Faces By Image
+                # 使用 Rekognition 本地檢測人臉
+                _, encoded_image = cv2.imencode('.jpg', face_img)
                 response = rekognition.search_faces_by_image(
                     CollectionId=collection_id,
-                    Image={'S3Object': {'Bucket': bucket_name, 'Name': face_path}},
+                    Image={'Bytes': encoded_image.tobytes()},
                     MaxFaces=10,
-                    FaceMatchThreshold=40,
-                    QualityFilter="NONE"
+                    FaceMatchThreshold=20
                 )
 
                 if response['FaceMatches']:
@@ -114,18 +111,16 @@ while cap.isOpened():
                     confidence = best_match['Similarity']
                     label = f"{name} ({confidence:.2f}%)"
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                    frame=cv2ChineseText(frame,label,(x1, y1 - 30),(0, 255, 0),24)
-                    # cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+                    frame = cv2ChineseText(frame, label, (x1, y1 - 30), (0, 255, 0), 24)
                 else:
                     label = "Unknown"
-                    unknown_face_path = os.path.join(unknown_faces_dir, f"unknown_{timestamp}.jpg")
+                    unknown_face_path = os.path.join(unknown_faces_dir, f"unknown_{datetime.now().strftime('%Y%m%d_%H%M%S%f')}.jpg")
                     cv2.imwrite(unknown_face_path, face_img)
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
                     cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
             except rekognition.exceptions.InvalidParameterException:
-                # 如果 AWS Rekognition 無法找到臉部，跳過處理
                 print(f"Skipping face {face_count} at frame {frame_count}: No faces detected in image.")
-            os.remove(face_path)
             face_count += 1
 
     out.write(frame)
@@ -138,6 +133,12 @@ cap.release()
 out.release()
 cv2.destroyAllWindows()
 
+# 計時器結束並輸出總時間
 end_time = time.time()
 total_time = end_time - start_time
 print(f"總共處理時間: {total_time:.2f} 秒")
+
+
+
+
+
