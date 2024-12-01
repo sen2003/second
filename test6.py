@@ -1,3 +1,4 @@
+# good
 import supervision as sv
 from ultralytics import YOLO 
 from tqdm import tqdm
@@ -27,7 +28,7 @@ class EventLogger:
             "time": current_time
         })
         
-        self.frame_events.append(f"ID {track_id} {event_type}")
+        self.frame_events.append((f"ID {track_id} {event_type}",event_type))
         if len(self.frame_events) > 5:
             self.frame_events.pop(0)
             
@@ -38,7 +39,7 @@ class EventLogger:
             json.dump(self.events, f, ensure_ascii=False, indent=2)
             
     def get_display_text(self):
-        return '\n'.join(self.frame_events)
+        return self.frame_events
 
 class LineCrossDetector:
     def __init__(self, line_x: int):
@@ -50,30 +51,31 @@ class LineCrossDetector:
         in_count = 0
         out_count = 0
         triggered_events = []  # [(id, event_type), ...]
-        
-        # 計算每個檢測框的中心x座標
         boxes = detections.xyxy
-        center_x = (boxes[:, 0] + boxes[:, 2]) / 2
+        left_x = boxes[:, 0]   # 左邊界 x 座標
+        right_x = boxes[:, 2]  # 右邊界 x 座標
         
         for idx, track_id in enumerate(current_ids):
-            current_x = center_x[idx]
+            current_left = left_x[idx]
+            current_right = right_x[idx]
             
             if track_id in self.previous_positions:
-                prev_x = self.previous_positions[track_id]
-                
-                # 檢查是否穿過檢測線
-                if prev_x < self.line_x and current_x > self.line_x:
-                    triggered_events.append((track_id, "out"))
-                    in_count += 1
-                elif prev_x >= self.line_x and current_x < self.line_x:
+                prev_left, prev_right = self.previous_positions[track_id]
+                #在 line_x 範圍裡時不用判斷
+                if self.line_x<=current_right and self.line_x>=current_left:
+                    continue
+                # 進入(in)：用右邊界判斷
+                if prev_right > self.line_x and current_right <= self.line_x:
                     triggered_events.append((track_id, "in"))
+                    in_count += 1
+                # 離開(out)：用左邊界判斷
+                elif prev_left <= self.line_x and current_left > self.line_x:
+                    triggered_events.append((track_id, "out"))
                     out_count += 1
             
-            # 更新位置記錄
-            self.previous_positions[track_id] = current_x
-            
+            # 更新位置記錄：同時記錄左右邊界
+            self.previous_positions[track_id] = (current_left, current_right)
         return triggered_events, in_count, out_count
-
 def process_video(
         source_weights_path: str, 
         source_video_path: str,
@@ -85,8 +87,8 @@ def process_video(
     classes = list(model.names.values())
     
     # 設定檢測線位置（x座標）
-    LINE_X1 = 1560
-    LINE_X2= 1460
+    LINE_X1 = 1500
+    LINE_X2= 1500
     midpointX=(LINE_X1+LINE_X2)/2
     LINE_START = sv.Point(LINE_X2, 500)
     LINE_END = sv.Point(LINE_X1, 0)
@@ -120,18 +122,12 @@ def process_video(
         detections = smoother.update_with_detections(detections)
         annotated_frame = box_annotator.annotate(scene=frame.copy(), detections=detections)
         
-        triggered_events, in_count, out_count = line_detector.update(detections)
+        triggered_events,in_count, out_count = line_detector.update(detections)
         
         # 更新總計數並記錄事件
         
         for track_id, event_type in triggered_events:
-            event_logger.add_event(track_id, event_type)
-        
-        # 更新虛擬LineZone的計數（用於顯示）
-       
-        
-        # 繪製標註
-        
+            event_logger.add_event(track_id, event_type) 
         
         # 準備標籤
         labels = [
@@ -150,15 +146,15 @@ def process_video(
         # 添加事件文字
         event_text = event_logger.get_display_text()
         y_position = 30
-        for line in event_text.split('\n'):
-            # color=(0,0,0) if line[-3]=="" else (255,255,255)
+        for text, event_type in event_logger.get_display_text():
+            color = (0, 0, 255) if event_type == "in" else (0, 255, 0)
             cv2.putText(
                 annotated_frame,
-                line,
+                text,
                 (10, y_position),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 1,
-                (255,255,255),
+                color,
                 2
             )
             y_position += 30
